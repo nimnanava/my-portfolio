@@ -1,121 +1,90 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Mail, ArrowUpRight } from "lucide-react";
-import Link from "next/link";
+import {
+  Github,
+  Linkedin,
+  Twitter,
+  Mail,
+  ArrowUpRight,
+  Zap,
+} from "lucide-react";
 
-export default function Footer() {
+export default function CompactFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full  pt-20 pb-10 px-6 mt-20 rounded-t-[50px]">
-      <div className="ml mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-          {/* වම්පස කොටස - ඇරයුම */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter">
-              Let&apos;s build something <br />
-              <span className="text-slate-400">great together.</span>
-            </h2>
-            <Link
-              href="mailto:yourname@gmail.com"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-full hover:scale-105 transition-transform"
-            >
-              Get in touch <ArrowUpRight size={20} />
-            </Link>
-          </motion.div>
-
-          {/* දකුණු පස කොටස - ලින්ක්ස් */}
-          <div className="grid grid-cols-2 gap-8 md:justify-items-end">
-            <div className="space-y-4">
-              <h4 className="font-bold text-lg">Navigation</h4>
-              <ul className="space-y-2 text-slate-600">
-                <li>
-                  <Link
-                    href="#home"
-                    className="hover:text-black transition-colors"
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#work"
-                    className="hover:text-black transition-colors"
-                  >
-                    Work
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#about"
-                    className="hover:text-black transition-colors"
-                  >
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#contact"
-                    className="hover:text-black transition-colors"
-                  >
-                    Contact
-                  </Link>
-                </li>
-              </ul>
+    <footer className="w-full bg-white  py-10  mt-10 px-6 ">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+          {/* LEFT: LOGO & STATUS */}
+          <div className="flex flex-col items-center md:items-start gap-2">
+            <div className="flex items-center gap-2">
+              <Zap size={18} className="text-slate-900 fill-slate-900" />
+              <span className="text-base font-black tracking-tighter uppercase italic text-slate-900">
+                YourName<span className="text-blue-600">.</span>
+              </span>
             </div>
-            <div className="space-y-4">
-              <h4 className="font-bold text-lg">Socials</h4>
-              <div className="flex gap-4">
-                <SocialIcon
-                  icon={<Github size={20} />}
-                  href="https://github.com"
-                />
-                <SocialIcon
-                  icon={<Linkedin size={20} />}
-                  href="https://linkedin.com"
-                />
-                <SocialIcon
-                  icon={<Twitter size={20} />}
-                  href="https://twitter.com"
-                />
-              </div>
+            <div className="flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+              <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-slate-400">
+                Available for projects
+              </span>
+            </div>
+          </div>
+
+          {/* CENTER: QUICK LINKS */}
+          <nav className="flex items-center gap-6 md:gap-10">
+            {["Home", "Projects", "Stack", "Contact"].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors"
+              >
+                {item}
+              </a>
+            ))}
+          </nav>
+
+          {/* RIGHT: SOCIALS & CONTACT */}
+          <div className="flex items-center gap-4">
+            <a
+              href="mailto:hello@yourname.com"
+              className="group flex items-center gap-2 bg-slate-50 hover:bg-slate-900 px-4 py-2 rounded-full border border-slate-100 transition-all duration-300"
+            >
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-600 group-hover:text-white transition-colors">
+                Hire Me
+              </span>
+              <ArrowUpRight
+                size={14}
+                className="text-slate-400 group-hover:text-white"
+              />
+            </a>
+
+            <div className="flex items-center gap-3 border-l border-slate-100 pl-4">
+              <a
+                href="#"
+                className="text-slate-400 hover:text-slate-900 transition-colors"
+              >
+                <Linkedin size={18} />
+              </a>
+              <a
+                href="#"
+                className="text-slate-400 hover:text-slate-900 transition-colors"
+              >
+                <Github size={18} />
+              </a>
             </div>
           </div>
         </div>
 
-        {/* පල්ලෙහාම කොටස - Copyright */}
-        <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
-          <p>© {currentYear} YourName. Built with Next.js & Framer Motion.</p>
-          <div className="flex gap-8">
-            <Link href="/privacy" className="hover:text-black">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:text-black">
-              Terms of Service
-            </Link>
-          </div>
+        {/* BOTTOM LINE: COPYRIGHT */}
+        <div className="mt-10 pt-6 border-t border-slate-50 flex justify-center">
+          <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-slate-300">
+            © {currentYear} Handcrafted by{" "}
+            <span className="text-slate-400">YourName</span>
+          </p>
         </div>
       </div>
     </footer>
-  );
-}
-
-// Social Icon සඳහා කුඩා Component එකක්
-function SocialIcon({ icon, href }: { icon: React.ReactNode; href: string }) {
-  return (
-    <motion.a
-      href={href}
-      target="_blank"
-      whileHover={{ y: -5 }}
-      className="p-3 bg-white rounded-full shadow-sm hover:shadow-md transition-shadow border border-slate-100"
-    >
-      {icon}
-    </motion.a>
   );
 }

@@ -1,4 +1,4 @@
-"use client"; // Animation සහ Interaction සඳහා අවශ්‍ය වේ
+"use client";
 
 import {
   Accordion,
@@ -6,85 +6,119 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { HelpCircle } from "lucide-react"; // ප්‍රශ්න සඳහා අයිකනයක්
+import {
+  HelpCircle,
+  Sparkles,
+  Zap,
+  ShieldCheck,
+  Wallet,
+  Wand2,
+  ArrowRight,
+} from "lucide-react";
+import { motion } from "framer-motion";
 
-const problem = [
+const faqData = [
   {
     id: 1,
-    problem: "ඔබේ සේවාවන් සඳහා අය කරන මිල ගණන් කොහොමද?",
+    question: "How do you determine the pricing?",
     answer:
-      "අපි සෑම ව්‍යාපෘතියකම ස්වභාවය අනුව සාධාරණ මිල ගණන් යටතේ උසස් තත්ත්වයේ නිර්මාණ ලබා දීමට බැඳී සිටින්නෙමු. වැඩි විස්තර සඳහා අපව සම්බන්ධ කරගන්න.",
+      "I follow a value-based pricing model. Every project is unique, so I provide a tailored proposal that balances your budget with top-tier engineering quality.",
+    icon: <Wallet className="w-5 h-5 text-amber-500" />,
   },
   {
     id: 2,
-    problem: "ව්‍යාපෘතියක් අවසන් කිරීමට සාමාන්‍යයෙන් කොපමණ කාලයක් ගතවේද?",
+    question: "What is the delivery timeline?",
     answer:
-      "ව්‍යාපෘතියේ විශාලත්වය අනුව සාමාන්‍යයෙන් සති 1ක් සහ 4ක් අතර කාලයක් ගත විය හැක.",
+      "Speed is my edge. Most custom sites are delivered within 1-4 weeks. I use agile workflows to ensure you go live as fast as possible without cutting corners.",
+    icon: <Zap className="w-5 h-5 text-blue-500" />,
   },
   {
     id: 3,
-    problem: "නිර්මාණය කළ පසු අලුත්වැඩියා කටයුතු (Maintenance) කර දෙනවාද?",
+    question: "Do you offer maintenance?",
     answer:
-      "ඔව්, අපි ලබා දෙන ඕනෑම සේවාවකට පසුව අවශ්‍ය තාක්ෂණික සහාය සහ නඩත්තු කටයුතු අප විසින් සිදු කරනු ලබයි.",
+      "Yes. I don't just build and leave. I offer 30 days of complimentary support to ensure everything is perfect, followed by flexible long-term support plans.",
+    icon: <ShieldCheck className="w-5 h-5 text-emerald-500" />,
   },
   {
     id: 4,
-    problem: "මගේම අදහසකට අනුව නිර්මාණයක් කරවා ගත හැකිද?",
+    question: "Is the design fully custom?",
     answer:
-      "අනිවාර්යයෙන්ම. අප සැමවිටම උත්සාහ කරන්නේ ඔබේ අවශ්‍යතාවය සහ අදහස උපරිම අයුරින් යථාර්ථයක් බවට පත් කිරීමටයි.",
+      "100%. No generic templates. I build every component from scratch using custom code, ensuring your brand has a distinct and elite digital presence.",
+    icon: <Wand2 className="w-5 h-5 text-violet-500" />,
   },
   {
     id: 5,
-    problem: "ගෙවීම් කටයුතු සිදු කළ යුතු ආකාරය කුමක්ද?",
+    question: "Is the design fully custom?",
     answer:
-      "බැංකු තැන්පතු හෝ online payment ක්‍රමවේද හරහා ඔබට පහසුවෙන් ගෙවීම් කටයුතු සිදු කළ හැකිය.",
+      "100%. No generic templates. I build every component from scratch using custom code, ensuring your brand has a distinct and elite digital presence.",
+    icon: <Wand2 className="w-5 h-5 text-violet-500" />,
   },
 ];
 
-function Accordioon() {
+export default function GridFAQ() {
   return (
-    <div className="w-full bg-white py-20 px-6">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 md:items-start">
-        {/* වම්පස කොටස - මාතෘකාව */}
-        <div className="  flex  items-center justify-center w-full ">
-          <div className="  top-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-sm font-medium mb-4">
-              <HelpCircle size={16} />
-              <span>Support Center</span>
-            </div>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-black leading-[1.1]">
-              Answers to your <br />
-              <span className="text-slate-400">burning questions</span>
-            </h2>
-            <p className="mt-6 text-lg text-slate-600  leading-relaxed">
-              ඔබට දැන ගැනීමට අවශ්‍ය පොදු කරුණු කිහිපයක් මෙන්න. මීට අමතරව යමක්
-              දැන ගැනීමට ඇත්නම් ඕනෑම වෙලාවක අපව අමතන්න.
-            </p>
-          </div>
+    <div className="w-full bg-white py-24 px-6 overflow-hidden font-sans">
+      <div className="max-w-6xl mx-auto">
+        {/* HEADER */}
+        <div className="text-center mb-20 space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-100 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400"
+          >
+            <Sparkles size={14} className="text-violet-600" />
+            Common Queries
+          </motion.div>
+          <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-900 uppercase">
+            Curiosity{" "}
+            <span className="text-transparent bg-clip-text bg-clip-text bg-gradient-to-r from-blue-400 via-violet-400 to-pink-400 ">
+              Meets Code.
+            </span>
+          </h2>
         </div>
 
-        {/* දකුණු පස කොටස - Accordion */}
-        <div className="w-full space-y-4">
-          <Accordion type="single" collapsible className="w-full border-none">
-            {problem.map((item) => (
-              <AccordionItem
-                value={`item-${item.id}`}
+        {/* FAQ GRID */}
+        <Accordion type="single" collapsible className="w-full border-none">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {faqData.map((item, index) => (
+              <motion.div
                 key={item.id}
-                className="mb-4 border-none bg-slate-50 rounded-[30px] px-8 transition-all duration-300 hover:bg-slate-100 data-[state=open]:bg-slate-100 data-[state=open]:shadow-sm"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
               >
-                <AccordionTrigger className="text-left font-bold text-lg md:text-xl py-7 hover:no-underline">
-                  {item.problem}
-                </AccordionTrigger>
-                <AccordionContent className="text-slate-600 text-base pb-8 leading-relaxed italic">
-                  — {item.answer}
-                </AccordionContent>
-              </AccordionItem>
+                <AccordionItem
+                  value={`item-${item.id}`}
+                  className="group border border-slate-100 bg-slate-50/50 rounded-[32px] px-6 md:px-8 transition-all duration-500 data-[state=open]:bg-white data-[state=open]:border-violet-200 data-[state=open]:shadow-2xl data-[state=open]:shadow-blue-100/40 overflow-hidden"
+                >
+                  <AccordionTrigger className="text-left py-7 hover:no-underline border-none">
+                    <div className="flex items-center gap-5 w-full">
+                      <div className="w-10 h-10 rounded-2xl bg-white shadow-sm flex items-center justify-center group-data-[state=open]:bg-violet-600 group-data-[state=open]:text-white transition-all duration-500">
+                        {item.icon}
+                      </div>
+                      <span className="font-bold text-lg tracking-tight text-slate-800 group-data-[state=open]:text-violet-600 transition-colors">
+                        {item.question}
+                      </span>
+                    </div>
+                  </AccordionTrigger>
+
+                  <AccordionContent className="pb-8 pl-[60px]">
+                    <div className="space-y-4">
+                      <p className="text-slate-500 text-sm md:text-base leading-relaxed font-medium">
+                        {item.answer}
+                      </p>
+                      <div className="flex items-center gap-2 text-violet-600 font-bold text-[10px] uppercase tracking-[0.2em]">
+                        Detailed Info <ArrowRight size={12} />
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </motion.div>
             ))}
-          </Accordion>
-        </div>
+          </div>
+        </Accordion>
       </div>
     </div>
   );
 }
-
-export default Accordioon;

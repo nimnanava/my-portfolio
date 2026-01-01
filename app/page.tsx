@@ -7,7 +7,7 @@ import ProfileHeader from "@/components/section/hero";
 import MyBusinessSection from "@/components/section/Mybissnus";
 import CurrentProjects from "@/components/section/Myproject";
 import Navbar from "@/components/section/navBar";
-import StackingCards from "@/components/section/organization";
+import StackingSkills from "@/components/section/skill";
 
 export default function Home() {
   return (
@@ -20,7 +20,7 @@ export default function Home() {
       <CurrentProjects />
       <FeaturesAndContact />
       <Accordioon />
-      <StackingCards />
+      <StackingSkills />
       <Footer />
     </div>
   );

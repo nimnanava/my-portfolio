@@ -39,7 +39,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-99999 transition-all duration-300 ${
         scrolled
           ? "bg-white/1  backdrop-blur-sm  shadow-md " // ස්ක්‍රෝල් කළ පසු පෙනුම
           : "bg-transparent " // මුලින් පවතින පෙනුම (Transparent)

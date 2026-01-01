@@ -5,13 +5,13 @@ import { motion } from "framer-motion";
 export default function About() {
   return (
     <>
-      <div className="  flex justify-center w-full md:px-24 px-5 mt-10">
+      <div className="  flex justify-center w-full md:px-24 px-5 mt-10 bg-white">
         <div className=" w-full justify-center relative">
           <div>
             <h2 className="text-3xl font-bold">From Gears to Gradients</h2>
             <motion.div
               initial={{ width: 0 }}
-              whileInView={{ width: "100px" }} // පේජ් එකේ පෙනෙන මානයට ආ විට වැඩ කරයි
+              whileInView={{ width: "100px" }}
               transition={{ duration: 1, ease: "easeOut" }}
               className="h-1 bg-violet-600 mt-2 rounded-full"
             />
